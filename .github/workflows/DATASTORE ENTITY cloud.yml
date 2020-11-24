@@ -1,2 +1,0 @@
-- name: Set Google Cloud Datastore Entity
-  uses: BeeMyDesk/cloud-datastore-action@v1.0.0
