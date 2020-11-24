@@ -29,3 +29,57 @@ Exemplu de cod pentru app engine:
   with:
     service_account: ${{ secrets.SERVICE_ACCOUNT }}
     project_name: ${{ secrets.PROJECT_NAME }}
+
+Exemplu pentru SQL:
+uses: mattes/gce-cloudsql-proxy-action@v1
+with:
+  creds: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+  instance: my-project:us-central1:instance-1
+
+Exemplu pentru incarcarea de fisiere in GCS:
+For uploading a file
+
+steps:
+  - id: upload-file
+    uses: google-github-actions/upload-cloud-storage@main
+    with:
+      path: /path/to/file
+      destination: bucket-name/file
+
+   Example of using the output
+  - id: uploaded-files
+    uses: foo/bar@master
+    env:
+      file: ${{steps.upload-file.outputs.uploaded}}
+
+The file will be uploaded to gs://bucket-name/file
+For uploading a folder
+
+steps:
+  - id: upload-files
+    uses: google-github-actions/upload-cloud-storage@main
+    with:
+      path: /path/to/folder
+      destination: bucket-name
+
+   Example of using the output
+  - id: uploaded-files
+    uses: foo/bar@master
+    env:
+      files: ${{steps.upload-files.outputs.uploaded}}
+Exemplu de cod pentru dezvoltarea de funtii google cloud:
+steps:
+- id: deploy
+  uses: google-github-actions/deploy-cloud-functions@main
+  with:
+    name: my-function
+    runtime: nodejs10
+    credentials: ${{ secrets.gcp_credentials }}
+
+Example of using the output
+- id: test
+  run: curl "${{ steps.deploy.outputs.url }}"
+
+
+
+
