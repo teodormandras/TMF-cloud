@@ -1,0 +1,2 @@
+- name: Google Cloud Compute Engine Deploy
+  uses: mattes/gce-deploy-action@v5.0.0
