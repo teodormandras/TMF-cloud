@@ -1,0 +1,2 @@
+- name: Google Cloud SQL Proxy
+  uses: mattes/gce-cloudsql-proxy-action@v1.0.0
